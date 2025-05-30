@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Romântico</title>
+    <link rel="stylesheet" href="clique.css">
+</head>
+<body>
+    <button class="romantic-btn" id="romanticButton"><a href="index.html">Clique aqui ❤️</a></button>
+
+    <script>
+        const romanticButton = document.getElementById('romanticButton');
+        
+        // Criar corações ao passar o mouse
+        romanticButton.addEventListener('mouseenter', function() {
+            createHearts();
+            createSparkles();
+        });
+        
+        // Criar corações ao clicar
+        romanticButton.addEventListener('click', function() {
+            createHeartExplosion();
+        });
+        
+        function createHearts() {
+            const heartsCount = 10;
+            
+            for (let i = 0; i < heartsCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    
+                    // Posição aleatória ao redor do botão
+                    const rect = romanticButton.getBoundingClientRect();
+                    const posX = rect.left + Math.random() * rect.width;
+                    const posY = rect.top + Math.random() * rect.height;
+                    
+                    heart.style.left = `${posX}px`;
+                    heart.style.top = `${posY}px`;
+                    
+                    // Tamanho aleatório
+                    const size = 0.5 + Math.random();
+                    heart.style.fontSize = `${size}em`;
+                    
+                    // Animação personalizada
+                    heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+                    heart.style.animationDelay = `${Math.random() * 0.5}s`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Remover após animação
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+        
+        function createSparkles() {
+            const sparklesCount = 15;
+            
+            for (let i = 0; i < sparklesCount; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    
+                    const rect = romanticButton.getBoundingClientRect();
+                    const posX = rect.left + Math.random() * rect.width;
+                    const posY = rect.top + Math.random() * rect.height;
+                    
+                    sparkle.style.left = `${posX}px`;
+                    sparkle.style.top = `${posY}px`;
+                    
+                    // Tamanho aleatório
+                    const size = 2 + Math.random() * 3;
+                    sparkle.style.width = `${size}px`;
+                    sparkle.style.height = `${size}px`;
+                    
+                    // Delay aleatório
+                    sparkle.style.animationDelay = `${Math.random() * 0.5}s`;
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    // Remover após animação
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }, i * 50);
+            }
+        }
+        
+        function createHeartExplosion() {
+            const explosionCount = 30;
+            
+            for (let i = 0; i < explosionCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    
+                    const rect = romanticButton.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    heart.style.left = `${centerX}px`;
+                    heart.style.top = `${centerY}px`;
+                    
+                    // Tamanho aleatório
+                    const size = 0.8 + Math.random();
+                    heart.style.fontSize = `${size}em`;
+                    
+                    // Animação de explosão
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 50 + Math.random() * 100;
+                    const duration = 1 + Math.random() * 2;
+                    
+                    heart.style.animation = `none`;
+                    heart.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${Math.random() * 360}deg)`;
+                    heart.style.transition = `all ${duration}s ease-out`;
+                    heart.style.opacity = '0';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Ativar animação
+                    setTimeout(() => {
+                        heart.style.opacity = '1';
+                    }, 10);
+                    
+                    // Remover após animação
+                    setTimeout(() => {
+                        heart.remove();
+                    }, duration * 1000);
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>

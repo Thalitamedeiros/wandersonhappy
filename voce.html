@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Que Eu Amo em Você</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #5a2d2d;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d23669;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .garden {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flower {
+            width: 120px;
+            height: 120px;
+            background-color: #ff6b6b;
+            border-radius: 60px 0 60px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            transform: rotate(45deg);
+        }
+
+        .flower:hover {
+            transform: rotate(45deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .flower::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #ff8e8e;
+            border-radius: 40px 0 40px 0;
+            transition: all 0.3s ease;
+        }
+
+        .flower:hover::before {
+            width: 70px;
+            height: 70px;
+        }
+
+        .flower-content {
+            transform: rotate(-45deg);
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            z-index: 1;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .message-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .message-box.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .message-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-content h2 {
+            color: #d23669;
+            margin-bottom: 1rem;
+        }
+
+        .message-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .audio-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0 auto;
+        }
+
+        .audio-btn:hover {
+            background-color: #d23669;
+        }
+
+        .audio-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .garden {
+                gap: 20px;
+                padding: 1rem;
+            }
+            
+            .flower {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .flower::before {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .flower:hover::before {
+                width: 60px;
+                height: 60px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1>rfdfvdvd</h1>
+        <p class="subtitle">fdrfvdr</p>
+    </div>
+
+    <div class="garden" id="flowerGarden">
+        <!-- Flores serão adicionadas pelo JavaScript -->
+    </div>
+
+    <div class="message-box" id="messageBox">
+        <div class="message-content">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <h2 id="messageTitle">Seu Sorriso</h2>
+            <p id="messageText">O jeito que seu sorriso ilumina até os dias mais cinzentos.</p>
+            <button class="audio-btn" id="audioBtn">
+                <i class="fas fa-play"></i> Ouvir minha voz
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mensagens e configurações
+        const qualities = [
+            {
+                title: "vfvfvdvo",
+                message: "svfvgdffv",
+                audio: src="audio1.mp3"
+            },
+            {
+                title: "Seu Coração",
+                message: "Sua capacidade de amar incondicionalmente e colocar os outros em primeiro lugar.",
+                audio: null
+            },
+            {
+                title: "Sua Força",
+                message: "A maneira como você enfrenta os desafios com coragem e determinação.",
+                audio: null
+            },
+            {
+                title: "Seu Humor",
+                message: "Seu senso de humor único que sempre me faz rir, mesmo nos meus piores dias.",
+                audio: null
+            },
+            {
+                title: "Sua Inteligência",
+                message: "A forma como você vê o mundo com tanta sabedoria e profundidade.",
+                audio: null
+            },
+            {
+                title: "Seu Carinho",
+                message: "Os pequenos gestos de carinho que mostram o quanto você se importa.",
+                audio: null
+            },
+            {
+                title: "Sua Paixão",
+                message: "O brilho nos seus olhos quando você fala sobre o que ama.",
+                audio: null
+            },
+            {
+                title: "Sua Autenticidade",
+                message: "Como você é verdadeiramente você mesma, sem medo de julgamentos.",
+                audio: null
+            }
+        ];
+
+        // Elementos DOM
+        const flowerGarden = document.getElementById('flowerGarden');
+        const messageBox = document.getElementById('messageBox');
+        const messageTitle = document.getElementById('messageTitle');
+        const messageText = document.getElementById('messageText');
+        const closeBtn = document.getElementById('closeBtn');
+        const audioBtn = document.getElementById('audioBtn');
+        
+        // Cores das flores
+        const flowerColors = ['#ff6b6b', '#ff8e8e', '#ffb3b3', '#ff7675', '#fd79a8', '#fab1a0'];
+        
+        // Emojis para o centro das flores
+        const flowerEmojis = ['❤️', '🌸', '🌹', '💖', '🥰', '😍', '🌺', '💐'];
+        
+        // Criar o jardim de flores
+        qualities.forEach((quality, index) => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            
+            // Cor aleatória
+            const color = flowerColors[Math.floor(Math.random() * flowerColors.length)];
+            flower.style.backgroundColor = color;
+            flower.style.boxShadow = `0 5px 15px ${color}80`;
+            
+            // Emoji aleatório
+            const emoji = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            
+            flower.innerHTML = `
+                <div class="flower-content">${emoji}</div>
+            `;
+            
+            // Adicionar evento de clique
+            flower.addEventListener('click', () => {
+                showMessage(quality);
+            });
+            
+            flowerGarden.appendChild(flower);
+        });
+        
+        // Mostrar mensagem
+        function showMessage(quality) {
+            messageTitle.textContent = quality.title;
+            messageText.textContent = quality.message;
+            
+            if (quality.audio) {
+                audioBtn.style.display = 'flex';
+                audioBtn.onclick = function() {
+                    // Tocar áudio
+                    const audio = new Audio(quality.audio);
+                    audio.play();
+                };
+            } else {
+                audioBtn.style.display = 'none';
+            }
+            
+            messageBox.classList.add('active');
+        }
+        
+        // Fechar mensagem
+        closeBtn.addEventListener('click', () => {
+            messageBox.classList.remove('active');
+        });
+        
+        // Fechar ao clicar fora
+        messageBox.addEventListener('click', (e) => {
+            if (e.target === messageBox) {
+                messageBox.classList.remove('active');
+            }
+        });
+        
+        // Efeito especial ao carregar
+        setTimeout(() => {
+            const flowers = document.querySelectorAll('.flower');
+            flowers.forEach((flower, i) => {
+                setTimeout(() => {
+                    flower.style.opacity = '1';
+                    flower.style.transform = 'rotate(45deg)';
+                }, i * 100);
+            });
+        }, 500);
+    </script>
+</body>
+</html>

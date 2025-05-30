@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário, Wanderson!</title>
+<link rel="stylesheet" href="frase.css">
+</head>
+<body>
+  <div id="background-hearts"></div>
+  <div id="heart-container"></div>
+
+  <div class="container">
+    <header>
+      <h1>Feliz Aniversário, Wanderson!</h1>
+      <p>Hoje é o seu dia, e eu só consigo pensar no quanto sou sortuda por ter você ao meu lado. Cada momento contigo é um pedacinho de felicidade que guardo no meu coração. Você ilumina minha vida com seu sorriso, com seu carinho, com esse jeitinho único que só você tem. 💙
+
+Que o seu novo ano venha repleto de sonhos realizados, amor multiplicado e muitos motivos para sorrir. Eu prometo estar aqui para te apoiar, celebrar suas conquistas e te encher de beijos em todos os dias — não só hoje. 🥰
+
+Te amo mais do que palavras podem dizer. Que seu dia seja tão incrível quanto você é pra mim. Parabéns, meu bem! 🎂🎉💖
+
+Com todo o meu amor,Thalita Medeiros</p>
+    </header>
+
+    <section class="gallery">
+      <img src="foto1.jpeg" alt="Foto 1">
+      <img src="foto2.jpeg" alt="Foto 2">
+      <img src="foto3.jpeg" alt="Foto 3">
+      <img src="foto4.jpeg" alt="Foto 4">
+      <img src="foto5.jpeg" alt="Foto 5">
+      <img src="foto6.jpeg" alt="Foto 6">
+
+    </section>
+
+    <audio src=""></audio>
+    <footer>
+      <p>Com todo meu amor, para você. 💖</p>
+    </footer>
+  </div>
+
+  <script>
+    const heartContainer = document.getElementById('heart-container');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+      heartContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+    
+  </script>
+</body>
+</html>
